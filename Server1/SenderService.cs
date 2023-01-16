@@ -91,7 +91,7 @@ namespace Server1
                 string serialized = JsonConvert.SerializeObject(msg);
                 var content = new StringContent(serialized, Encoding.UTF8, "application/json");
 
-                var res = await _httpClient.PostAsync("", content);
+                var res = await _httpClient.PostAsync("http://localhost:24330", content);
                 var responseJson = await res.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<HttpDataResponse>(responseJson);
                 await _locker.LockAsync(async () =>
